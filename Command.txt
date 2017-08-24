@@ -1,0 +1,10 @@
+node --version
+
+
+npm install -g @angular/cli
+
+ng --version
+
+ng new ProjectName
+
+npm install -g typescript
