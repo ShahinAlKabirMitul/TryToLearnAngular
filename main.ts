@@ -1,3 +1,4 @@
+
 function log(message){
     console.log(message);
 }
@@ -11,3 +12,7 @@ function doSome(){
 }
 
 doSome();
+
+// enum
+enum color{Red=0,Green=1,Blue=2}
+let backGroundColor=color.Blue;
