@@ -11,7 +11,7 @@ import{Component}from '@angular/core';
                 <button class="btn btn-primary" [class.actival]="isActive" (click)="onSave($event)">Save</button>
             </div> 
             <div>
-                <input (keyup.enter)="nnKeyUp()" />
+                <input (keyup.enter)="onKeyUp($event)" />
             </div>
 
             `
@@ -27,13 +27,13 @@ export class CoursesComponent{
       //  let service=new CoursesService();
         this.courses=service.getCourses();
     }
-    nnKeyUp(){
-        console.log("Enter was click");
+    onKeyUp($event){
+        console.log("Enter was click & Value : "+$event.target.value);
     }
 
     onSave($event){
         $event.stopPropagation();
-        console.log("Button was click",$event);
+        console.log("Button was click ",$event);
     }
     onDivClick(){
         console.log("DIV was click");
