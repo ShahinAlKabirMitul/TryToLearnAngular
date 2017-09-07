@@ -7,8 +7,9 @@ import{Component}from '@angular/core';
             <ul>
                 <li *ngFor="let c of courses">{{c}}</li>
             </ul>
+           
                 <button class="btn btn-primary" [class.actival]="isActive">Save</button>
-
+                <button [style.background]="isActive ?'blue': 'Red' ">Save</button>
             `
 
 })
