@@ -7,12 +7,15 @@ import{Component}from '@angular/core';
             <ul>
                 <li *ngFor="let c of courses">{{c}}</li>
             </ul>
+                <button class="btn btn-primary" [class.actival]="isActive">Save</button>
+
             `
 
 })
 export class CoursesComponent{
     title='List of Courses'
     courses;
+    isActive=false;
 
     constructor(service:CoursesService){
       //  let service=new CoursesService();
