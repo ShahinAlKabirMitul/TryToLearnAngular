@@ -7,9 +7,9 @@ import{Component}from '@angular/core';
             <ul>
                 <li *ngFor="let c of courses">{{c}}</li>
             </ul>
-           
-                <button class="btn btn-primary" [class.actival]="isActive">Save</button>
-                <button [style.background]="isActive ?'blue': 'Red' ">Save</button>
+            <div (click)="onDivClick()">
+                <button class="btn btn-primary" [class.actival]="isActive" (click)="onSave($event)">Save</button>
+            </div> 
             `
 
 })
@@ -18,8 +18,15 @@ export class CoursesComponent{
     courses;
     isActive=false;
 
+
     constructor(service:CoursesService){
       //  let service=new CoursesService();
         this.courses=service.getCourses();
+    }
+    onSave($event){
+        console.log("Button was click",$event);
+    }
+    onDivClick(){
+        console.log("DIV was click");
     }
 }
