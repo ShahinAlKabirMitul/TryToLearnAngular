@@ -24,6 +24,7 @@ export class CoursesComponent{
         this.courses=service.getCourses();
     }
     onSave($event){
+        $event.stopPropagation();
         console.log("Button was click",$event);
     }
     onDivClick(){
