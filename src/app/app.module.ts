@@ -1,3 +1,4 @@
+import { AuauthorsService } from './auauthors.service';
 import { EmailService } from './email.service';
 import { CoursesService } from './courses.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,7 +23,8 @@ import { AuthorsComponent } from './authors/authors.component';
   ],
   providers: [
     CoursesService,
-    EmailService
+    EmailService,
+    AuauthorsService
   ],
   bootstrap: [AppComponent]
 })
