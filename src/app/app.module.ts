@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { AuauthorsService } from './auauthors.service';
 import { EmailService } from './email.service';
 import { CoursesService } from './courses.service';
@@ -19,7 +20,8 @@ import { AuthorsComponent } from './authors/authors.component';
     
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [
     CoursesService,

@@ -1,25 +1,22 @@
+
 import { CoursesService } from './courses.service';
 import{Component}from '@angular/core';
+
 @Component({
     selector:'courses',
     template:`
             <h2>{{title}}</h2>
-            <ul>
-                <li *ngFor="let c of courses">{{c}}</li>
-            </ul>
-            <div (click)="onDivClick()">
-                <button class="btn btn-primary" [class.actival]="isActive" (click)="onSave($event)">Save</button>
-            </div> 
-            <div>
-                <input #email (keyup.enter)="onKeyUp(email.value)" />
-            </div>
-
+           
+          
+            <input [(ngModel)]="email" (keyup.enter)="onKeyUp()" />
+            {{email}}
             `
 
 })
 export class CoursesComponent{
     title='List of Courses'
     courses;
+    email="mitul.cse@gmail.com";
     isActive=false;
 
 
@@ -27,8 +24,8 @@ export class CoursesComponent{
       //  let service=new CoursesService();
         this.courses=service.getCourses();
     }
-    onKeyUp(email){
-        console.log("Enter was click & Value : "+email);
+    onKeyUp(){
+        console.log("Enter was click & Value : "+this.email);
     }
 
     onSave($event){
