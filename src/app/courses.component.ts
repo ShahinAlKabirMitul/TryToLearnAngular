@@ -9,7 +9,7 @@ import{Component}from '@angular/core';
            
           
             <input [(ngModel)]="email" (keyup.enter)="onKeyUp()" />
-            {{email}}
+            {{email | titleCase}}
             `
 
 })
