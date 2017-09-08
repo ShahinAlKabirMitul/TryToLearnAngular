@@ -16,7 +16,7 @@ export class FavoriteComponent implements OnInit {
   onClick(){
     console.log('Click');
     this.isFavorite=!this.isFavorite;
-    this.change.emit(this.isFavorite);
+    this.change.emit( {korim :this.isFavorite});
   }
 
 }
