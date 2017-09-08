@@ -13,6 +13,11 @@ export class AppComponent {
     title:"Title",
     isFavorite:true
   }
+  tweet={
+    body:'...',
+    lilesCount:10,
+    isLiked:true
+  }
   onFavoriteChange(eventAgrs:FavoriteChangedEvenAgrs){
     console.log('Favorate Change isFavorite is : ',eventAgrs.newValue);
   }
