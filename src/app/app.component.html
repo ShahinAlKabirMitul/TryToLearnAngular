@@ -7,6 +7,17 @@
         <h2>body</h2>
         <p>Some content here....</p>
 
+        <div *ngIf="courses.length>0;then Courses else noCourses">
+           
+        </div>
+        <ng-template #Courses>
+            <h4>List of Courses</h4>
+        </ng-template>
+
+        <ng-template #noCourses>
+            <h4>No Courses yet </h4>
+        </ng-template>
+
         <like 
         [lilesCount]="tweet.lilesCount"
         [isActive]="tweet.isLiked"
