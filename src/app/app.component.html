@@ -10,13 +10,14 @@
         <div *ngIf="courses.length>0;then Courses else noCourses">
            
         </div>
-        <ng-template #Courses>
-            <h4>List of Courses</h4>
-        </ng-template>
 
-        <ng-template #noCourses>
-            <h4>No Courses yet </h4>
-        </ng-template>
+
+         <div [hidden]="courses.length==0">
+             List of courses
+         </div>
+         <div [hidden]="courses.length>0">
+             No courses yet
+         </div>
 
         <like 
         [lilesCount]="tweet.lilesCount"
