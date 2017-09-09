@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  viewMode='map';
   courses=[]
   post={
     title:"Title",
@@ -22,5 +23,7 @@ export class AppComponent {
   onFavoriteChange(eventAgrs:FavoriteChangedEvenAgrs){
     console.log('Favorate Change isFavorite is : ',eventAgrs.newValue);
   }
+  onClick(){
 
+  }
 }
