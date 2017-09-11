@@ -9,8 +9,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+
   viewMode='map';
-  courses=[]
+  courses=[
+    {ID:1,Name:'Java' },
+    {ID:1,Name:'C#'},
+    {ID:1,Name:'Angular'}]
   post={
     title:"Title",
     isFavorite:true
@@ -25,5 +30,13 @@ export class AppComponent {
   }
   onClick(){
 
+  }
+  addCourse(){
+    this.courses.push({ID:4,Name:'Node'});
+  }
+  deleteCourse(course){
+    console.log('delete Call'+course.Name);
+   let index= this.courses.indexOf(course);
+   this.courses.splice(index,1);
   }
 }
