@@ -1,0 +1,26 @@
+<form >
+  <div class="form-group">
+    <label for="name">Course Name</label>
+    <input required minlength="3" ngModel name="name" #name="ngModel" type="text" id="name" class="form-control">
+    <div *ngIf="name.touched && !name.valid " class="alert alert-danger">
+        <div *ngIf="name.errors.required">Name is required</div>
+        <div *ngIf="name.errors.minlength">Name filed at lest {{name.errors.minlength.requiredLength}} </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="category">Category</label>
+    <select id="category" name="" class="form-control">
+      <option value=""></option>
+       <option *ngFor="let c of caregories" [value]="c.id">{{c.name}}</option>
+    </select>
+  </div>
+   
+ <div class="checkbox">
+   <label for="momeyBackGuarantee">
+      <input type="checkbox" id="momeyBackGuarantee">
+      momey Back Guarantee 
+   </label>
+ 
+  </div>
+  <button class="btn btn-primary">Create </button>
+</form>

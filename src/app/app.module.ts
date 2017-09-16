@@ -1,4 +1,5 @@
-import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuauthorsService } from './auauthors.service';
 import { EmailService } from './email.service';
 import { CoursesService } from './courses.service';
@@ -13,6 +14,11 @@ import { FavoriteComponent } from './favorite/favorite.component';
 import { TitleCasePipe } from './title-case.pipe';
 import { PanelComponent } from './panel/panel.component';
 import { LikeComponent } from './like/like.component';
+import { ZippyComponent } from './zippy/zippy.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
+import { NewCourseFormComponent } from './new-course-form/new-course-form.component';
+import { SignupFormComponent } from './signup-form/signup-form.component';
+import { PostComponent } from './post/post.component';
 
 
 @NgModule({
@@ -24,12 +30,19 @@ import { LikeComponent } from './like/like.component';
     FavoriteComponent,
     TitleCasePipe,
     PanelComponent,
-    LikeComponent
+    LikeComponent,
+    ZippyComponent,
+    ContactFormComponent,
+    NewCourseFormComponent,
+    SignupFormComponent,
+    PostComponent
     
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule
   ],
   providers: [
     CoursesService,
