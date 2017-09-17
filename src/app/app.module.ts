@@ -1,3 +1,4 @@
+import { PostService } from './services/post.service';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuauthorsService } from './auauthors.service';
@@ -45,6 +46,7 @@ import { PostComponent } from './post/post.component';
     HttpModule
   ],
   providers: [
+    PostService,
     CoursesService,
     EmailService,
     AuauthorsService

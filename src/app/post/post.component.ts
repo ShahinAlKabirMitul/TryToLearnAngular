@@ -10,16 +10,20 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
-export class PostComponent  {
+export class PostComponent implements OnInit {
 
   posts:any[];
   private url='https://jsonplaceholder.typicode.com/posts'
   constructor(private  http:Http) { 
-    http.get(this.url).subscribe(response =>{
-        this.posts=response.json();
-        console.log(response.json());
-    });
+   
   }
+
+  ngOnInit(){
+    this.http.get(this.url).subscribe(response =>{
+      this.posts=response.json();
+      console.log(response.json());
+  });
+   }
  addPost(input:HTMLInputElement){
    let post={title:input.value}
    console.log(post);
@@ -32,6 +36,20 @@ export class PostComponent  {
    })
    ;  
  }
-
-
+ updatePost(post){
+  // this.http.patch(this.u)
+  this.http.patch(this.url+'/'+post.id,JSON.stringify({isRead:true}))
+  .subscribe(response=>{
+    console.log(response.json());
+  })
+  ;
+ }
+ Delete(post){
+  this.http.delete(this.url+'/'+post.id,JSON.stringify({isRead:true}))
+  .subscribe(response=>{
+    let index=this.posts.indexOf(post);
+    this.posts.splice(index,1);; 
+  })
+ }
+ 
 }
