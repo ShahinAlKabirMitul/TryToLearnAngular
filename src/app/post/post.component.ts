@@ -1,3 +1,4 @@
+import { error } from 'util';
 import { PostService } from '../services/post.service';
 import { postcssArgs } from '@angular/cli/tasks/eject';
 import { Url } from 'url';
@@ -22,8 +23,10 @@ export class PostComponent implements OnInit {
     this.service.getPost()
     .subscribe(response =>{
       this.posts=response.json();
-      console.log(response.json());
-  });
+    },error=>{
+      alert('An unexpected error');
+      console.log(error);
+    });
    }
  addPost(input:HTMLInputElement){
    let post={title:input.value}
@@ -34,6 +37,9 @@ export class PostComponent implements OnInit {
      post['id']=rsponse.json().id;
      this.posts.splice(0,0,post); 
      console.log(rsponse.json())
+   },error=>{
+    alert('An unexpected error');
+    console.log(error);
    })
    ;  
  }
@@ -42,6 +48,9 @@ export class PostComponent implements OnInit {
   this.service.updatePost(post)
   .subscribe(response=>{
     console.log(response.json());
+  },error=>{
+    alert('An unexpected error');
+    console.log(error);
   })
   ;
  }
@@ -50,6 +59,9 @@ export class PostComponent implements OnInit {
   .subscribe(response=>{
     let index=this.posts.indexOf(post);
     this.posts.splice(index,1);; 
+  },error=>{
+    alert('An unexpected error');
+    console.log(error);
   })
  }
  

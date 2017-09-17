@@ -15,7 +15,7 @@ export class PostService {
   createPost(post){
     return this.http.post(this.url,JSON.stringify(post));
   }
-  
+
   updatePost(post){
     return this.http.patch(this.url+'/'+post.id,JSON.stringify({isRead:true}));
   }
