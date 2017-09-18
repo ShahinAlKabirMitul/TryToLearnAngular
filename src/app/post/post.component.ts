@@ -1,3 +1,8 @@
+import { BadInout } from './../common/bad-input';
+import { AppError } from './../common/app-error';
+import { NotFoundError } from '../common/not-found-error';
+import { AppError } from '../common/app-error';
+
 import { error } from 'util';
 import { PostService } from '../services/post.service';
 import { postcssArgs } from '@angular/cli/tasks/eject';
@@ -37,9 +42,15 @@ export class PostComponent implements OnInit {
      post['id']=rsponse.json().id;
      this.posts.splice(0,0,post); 
      console.log(rsponse.json())
-   },error=>{
-    alert('An unexpected error');
-    console.log(error);
+   }, (AppError)=>{
+     if(error instanceof BadInout  ){
+      alert('An bad input Error');
+     }
+     else{
+      alert('An unexpected error');
+     }
+  
+   
    })
    ;  
  }
@@ -51,18 +62,21 @@ export class PostComponent implements OnInit {
   },error=>{
     alert('An unexpected error');
     console.log(error);
-  })
-  ;
+  });
  }
  Delete(post){
- this.service.deletePost(post)
+ this.service.deletePost(post.id)
   .subscribe(response=>{
     let index=this.posts.indexOf(post);
     this.posts.splice(index,1);; 
-  },error=>{
-    alert('An unexpected error');
-    console.log(error);
-  })
+  },( AppError) =>{
+    if (error instanceof NotFoundError) {
+        alert('post already deleted');
+    }else{
+       alert('An unexpected error');
+       console.log(error);
+    }
+  });
  }
  
 }
