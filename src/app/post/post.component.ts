@@ -26,20 +26,24 @@ export class PostComponent implements OnInit {
 
   ngOnInit(){
     this.service.getAll()
-    .subscribe(response =>{
-      this.posts=response.json();
-    })
+.subscribe(posts => this.posts=posts );
    }
  addPost(input:HTMLInputElement){
    let post={title:input.value}
+   this.posts.splice(0,0,post); 
    console.log(post);
+
    input.value=' ';
+
    this.service.create(post)
    .subscribe(rsponse=>{
-     post['id']=rsponse.json().id;
-     this.posts.splice(0,0,post); 
-     console.log(rsponse.json())
+     post['id']=rsponse.id;
+    
+     console.log(rsponse)
    }, (error: AppError)=>{
+    this.posts.splice(0,1); 
+
+
      if(error instanceof BadInout  ){
       alert('An bad input Error');
      }
@@ -50,18 +54,23 @@ export class PostComponent implements OnInit {
  }
  updatePost(post){
   // this.http.patch(this.u)
-  this.service.update(899)
+  this.service.update(post)
   .subscribe(response=>{
-    console.log(response.json());
+    console.log(response);
   });
  }
 
  Delete(post){
- this.service.delete(453)
-  .subscribe(response=>{
-    let index=this.posts.indexOf(post);
-    this.posts.splice(index,1);; 
-  },( error: AppError) =>{
+  let index=this.posts.indexOf(post);
+  this.posts.splice(index,1);
+
+
+ this.service.delete(post.id)
+  .subscribe(null
+    ,( error: AppError) =>{
+
+    this.posts.splice(index,0,post); 
+
     if (error instanceof NotFoundError) {
         alert('post already deleted');
         console.log(error);

@@ -1,3 +1,4 @@
+import { observable } from 'rxjs/symbol/observable';
 import { BadInout } from './../common/bad-input';
 
 import { NotFoundError } from '../common/not-found-error';
@@ -12,6 +13,7 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/catch';
 
+import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 
 @Injectable()
@@ -21,25 +23,32 @@ export class DataService {
 
   constructor( private url:string,private http:Http) { }
   getAll(){
-    return   this.http.get(this.url)
-             .catch(this.handleError);
+    return this.http.get(this.url)
+          .map(response => response.json())
+          .catch(this.handleError);
   }
 
   create(response){
+
+    //return  Observable.throw(new AppError());
     return this.http.post(this.url,JSON.stringify(response))
+    .map(response=>response.json())
     .catch(this.handleError);
   }
 
  
 
-  delete(response){
-    return  this.http.delete(this.url+'/'+response.id,JSON.stringify({isRead:true}))
-          .catch(this.handleError);
+  delete(id) {
+    return this.http.delete(this.url + '/' + id)
+      .map(response => response.json())
+      .catch(this.handleError);
   }
 
 
-  update(response){
-    return this.http.patch(this.url+'/'+response.id,JSON.stringify({isRead:true}));
+  update(resource) {
+    return this.http.patch(this.url + '/' + resource.id, JSON.stringify({ isRead: true }))
+      .map(response => response.json())      
+      .catch(this.handleError);
   }
 
   private handleError(error:Response){
