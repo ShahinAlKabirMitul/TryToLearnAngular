@@ -1,7 +1,7 @@
 import { BadInout } from './../common/bad-input';
 import { AppError } from './../common/app-error';
 import { NotFoundError } from '../common/not-found-error';
-import { AppError } from '../common/app-error';
+
 
 import { error } from 'util';
 import { PostService } from '../services/post.service';
@@ -28,10 +28,7 @@ export class PostComponent implements OnInit {
     this.service.getPost()
     .subscribe(response =>{
       this.posts=response.json();
-    },error=>{
-      alert('An unexpected error');
-      console.log(error);
-    });
+    })
    }
  addPost(input:HTMLInputElement){
    let post={title:input.value}
@@ -42,39 +39,34 @@ export class PostComponent implements OnInit {
      post['id']=rsponse.json().id;
      this.posts.splice(0,0,post); 
      console.log(rsponse.json())
-   }, (AppError)=>{
+   }, (error: AppError)=>{
      if(error instanceof BadInout  ){
       alert('An bad input Error');
      }
-     else{
-      alert('An unexpected error');
-     }
-  
-   
+     throw error;
+
    })
    ;  
  }
  updatePost(post){
   // this.http.patch(this.u)
-  this.service.updatePost(post)
+  this.service.updatePost(899)
   .subscribe(response=>{
     console.log(response.json());
-  },error=>{
-    alert('An unexpected error');
-    console.log(error);
   });
  }
+
  Delete(post){
- this.service.deletePost(post.id)
+ this.service.deletePost(453)
   .subscribe(response=>{
     let index=this.posts.indexOf(post);
     this.posts.splice(index,1);; 
-  },( AppError) =>{
+  },( error: AppError) =>{
     if (error instanceof NotFoundError) {
         alert('post already deleted');
+        console.log(error);
     }else{
-       alert('An unexpected error');
-       console.log(error);
+     
     }
   });
  }
