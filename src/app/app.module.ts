@@ -21,6 +21,7 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import { NewCourseFormComponent } from './new-course-form/new-course-form.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { PostComponent } from './post/post.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { PostComponent } from './post/post.component';
     ContactFormComponent,
     NewCourseFormComponent,
     SignupFormComponent,
-    PostComponent
+    PostComponent,
+    NavbarComponent
     
   ],
   imports: [
