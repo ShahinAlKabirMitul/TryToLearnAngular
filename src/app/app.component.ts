@@ -1,5 +1,6 @@
+import { Observable } from 'rxjs/Rx';
 import { FavoriteComponent, FavoriteChangedEvenAgrs } from './favorite/favorite.component';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 
 
@@ -8,8 +9,9 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
+      
 
   viewMode='map';
   courses=[
@@ -24,6 +26,12 @@ export class AppComponent {
     body:'...',
     lilesCount:10,
     isLiked:true
+  }
+  ngOnInit(){
+    const myNumber=Observable.interval(1000);
+  myNumber.subscribe((s:number)=>{
+    console.log(s);
+  })
   }
   onFavoriteChange(eventAgrs:FavoriteChangedEvenAgrs){
     console.log('Favorate Change isFavorite is : ',eventAgrs.newValue);
